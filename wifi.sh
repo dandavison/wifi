@@ -7,7 +7,12 @@
 # networksetup -setairportpower en0 on
 
 wifi () {
-    networksetup -setairportpower en0 $1
+    val=$1
+    [ "$val" = "on" ] || [ "$val" = "off" ] || {
+        echo "usage: $0 [on|off]" 1>&2
+        return
+    }
+    networksetup -setairportpower en0 $val
 }
 
 # List available wifi networks from the Mac OSX terminal command line:
