@@ -25,3 +25,12 @@ wifi-join () {
 
 # Find your network interface name
 # networksetup -listallhardwareports
+
+ping-world () {
+    ping -c 1 www.direct.gov.uk
+}
+
+
+wifi-poke () {
+    wifi off && wifi on && until ping-world; do sleep 1; done
+}
